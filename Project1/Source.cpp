@@ -91,10 +91,13 @@
 
 using namespace std;
 
+
+
 vector<string> left_bank = { "M1", "M2", "M3", "C1", "C2", "C3" };
 vector<string> right_bank(6, "");
 vector<string> boat(2, "");
 
+#define Z_LENGTH 40
 #define SCENE_CENTER_X 0.0
 #define SCENE_CENTER_Y 0.0
 #define SCENE_CENTER_Z -40.0
@@ -116,6 +119,152 @@ double up_x = 0.0;
 double up_y = 0.0;
 double up_z = 0.0;
 
+void Boat(double px, double py, double pz)
+{
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(58.8 / 100, 29.4 / 100, 0);
+	glTranslatef(px, py, pz);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(90.0, 1, 0, 0);
+	glScalef(2.0, 1.0, 1.0);
+	glutWireTorus(7.0, 20.0, 100.0, 100.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(58.8 / 100, 29.4 / 100, 0);
+	glTranslatef(px, py, pz);
+	glTranslatef(SCENE_CENTER_X , SCENE_CENTER_Y - 7, SCENE_CENTER_Z);
+	glScalef(2.0, 0.0, 1.0);
+	glutWireSphere(20.0, 100.0, 100.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+}
+
+void Tree(double px, double py, double pz)
+{
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(-90.0, 1, 0, 0);
+	glutWireCone(30.0, 30.0, 8.0, 8.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(0.0, 10.0, 0.0);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(-90.0, 1, 0, 0);
+	glutWireCone(27.0, 30.0, 8.0, 8.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(0.0, 20.0, 0.0);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(-90.0, 1, 0, 0);
+	glutWireCone(24.0, 30.0, 8.0, 8.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(0.0, 30.0, 0.0);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(-90.0, 1, 0, 0);
+	glutWireCone(21.0, 30.0, 8.0, 8.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(0.0, 40.0, 0.0);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(-90.0, 1, 0, 0);
+	glutWireCone(18.0, 30.0, 8.0, 8.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(0.0, 50.0, 0.0);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(-90.0, 1, 0, 0);
+	glutWireCone(15.0, 30.0, 8.0, 8.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(58.8 / 100, 29.4 / 100, 0);
+	glTranslatef(px, py, pz);
+	glTranslatef(0.0, -10.0, 0.0);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glRotatef(-90.0, 1, 0, 0);
+	glutWireCylinder(5.0, 40.0, 10, 10);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+
+}
+
+void Bed(double px, double py, double pz)
+{
+	// Body
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(58.8 / 100, 29.4 /100, 0);
+	glTranslatef(px, py, pz);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glScalef(3*240.0, 40.0, Z_LENGTH);
+	glutWireCube(1.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+}
+
+void Right_bank(double px, double py, double pz)
+{
+	// Body
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glScalef(240.0, 20.0, Z_LENGTH);
+	glutWireCube(1.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+}
+
+void Left_bank(double px, double py, double pz)
+{
+	// Body
+	glPushMatrix();
+	glEnable(GL_DEPTH_TEST);
+	glColor3f(0.0, 1.0, 0.0);
+	glTranslatef(px, py, pz);
+	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
+	glScalef(240.0, 20.0, Z_LENGTH);
+	glutWireCube(1.0);
+	glDisable(GL_DEPTH_TEST);
+	glPopMatrix();
+}
+
 void River(double px, double py, double pz)
 {
 	// Body
@@ -124,7 +273,7 @@ void River(double px, double py, double pz)
 	glColor3f(0.0, 0.0, 1.0);
 	glTranslatef(px, py, pz);
 	glTranslatef(SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z);
-	glScalef(1000.0, 20.0, 1000.0);
+	glScalef (240.0, 15.0, Z_LENGTH);
 	glutSolidCube(1.0);
 	glDisable(GL_DEPTH_TEST);
 	glPopMatrix();
@@ -305,7 +454,7 @@ void drawScene(void)
 	glLoadIdentity();
 	if (rot == 0.0)
 	{
-		gluLookAt(30.0, 0.0 + 0.5, -20.0, 0.0, 0.0, -30.0, 0.0, 1.0, 0.0);
+		gluLookAt(0, 0, 0, SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z, 0.0, 1.0, 0.0);
 	}
 
 	if (rot == 1.0) {
@@ -320,9 +469,14 @@ void drawScene(void)
 		gluLookAt(x_c + SCENE_CENTER_X, y_c + SCENE_CENTER_Y, z_c + SCENE_CENTER_Z, SCENE_CENTER_X, SCENE_CENTER_Y, SCENE_CENTER_Z, 0.0, 1.0, 0.0);
 	}
 
-	Man(0.0, 0.0, 0.0, FACING_RIGHT_BANK);
-	Cannibal(10.0, 0.0, 0.0, FACING_RIGHT_BANK);
-	River(0.0, -50.0, 0.0);
+	
+	River(0.0, -20.0, 0.0);
+	Right_bank(240.0, -20.0 + 2.5, 0.0);
+	Left_bank(-240.0, -20.0 + 2.5, 0.0);
+	Bed(0.0, -20.0 - 27.5, 0.0);
+	Tree(0, 0, 0);
+	Man(0, 21, 0, 0);
+	Boat(0.0, 0.0, 0.0);
 
 	glFlush();
 }

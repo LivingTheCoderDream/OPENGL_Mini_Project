@@ -4,6 +4,10 @@
 #include <GL/freeglut.h> 
 
 // Anikate Kumar
+
+// Atharv Jaju
+
+
 #ifndef _GLIBCXX_NO_ASSERT
 #include <cassert>
 #endif
